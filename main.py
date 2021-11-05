@@ -70,6 +70,17 @@ def move_ball():
     elif ball_y <= 0:
         ball_dir_y *= -1
 
+    if ball_x < -50:
+        ball_x = 617
+        ball_y = 337
+        ball_dir_y *= -1
+        ball_dir *= -1
+    elif ball_x > 1320:
+        ball_x = 617
+        ball_y = 337
+        ball_dir_y *= -1
+        ball_dir *= -1
+
 
 def draw():
     window.blit(field, (0, 0))
