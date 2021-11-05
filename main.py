@@ -5,10 +5,11 @@ pygame.init()
 window = pygame.display.set_mode([1280, 720])
 title = pygame.display.set_caption("Futeball Pong")
 
+win = pygame.image.load("assets/win.png")
 
 score1 = 0
 score1_img = pygame.image.load("assets/score/0.png")
-score2 = 0
+score2 = 7
 score2_img = pygame.image.load("assets/score/0.png")
 
 field = pygame.image.load("assets/field.png")
@@ -98,13 +99,18 @@ def move_ball():
 
 
 def draw():
-
-    window.blit(field, (0, 0))
-    window.blit(player1, (50, player1_y))
-    window.blit(player2, (1150, player2_y))
-    window.blit(ball, (ball_x, ball_y))
-    window.blit(score1_img, (500, 50))
-    window.blit(score2_img, (710, 50))
+    if score1 or score2 < 9:
+        window.blit(field, (0, 0))
+        window.blit(player1, (50, player1_y))
+        window.blit(player2, (1150, player2_y))
+        window.blit(ball, (ball_x, ball_y))
+        window.blit(score1_img, (500, 50))
+        window.blit(score2_img, (710, 50))
+        move_ball()
+        move_player()
+        move_player2()
+    else:
+        window.blit(win, (300, 330))
 
 
 loop = True
@@ -124,9 +130,6 @@ while loop:
                 player1_movedown = False
 
     draw()
-    move_player()
-    move_player2()
-    move_ball()
     pygame.display.update()
 
 
